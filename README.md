@@ -11,7 +11,7 @@ In this project, I implemented some of the widely-used functionalities of [lodas
 
 ## General information
 
-Codecademy has selected the following methods to recreate and implement:
+Codecademy has selected the following methods to recreate and implement in "_.js":
 
 1. _.clamp()
 2. _.inRange()
