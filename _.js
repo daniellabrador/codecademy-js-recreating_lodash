@@ -91,37 +91,63 @@ const _ = {
         return arr
     },
     dropWhile(arr,func){
-        // Determine item to keep
-        const toFlip = arr.map(func);
-        const filter = toFlip.map(boolean => !boolean)
-    
-        // Push items to keep using filter
-        const newArr = [];
-    
-        for (i=0; i<arr.length; i++){
-            if(filter[i]){
-                newArr.push(arr[i])
+        // Shift elements until predicate function returns falsey
+        for(i=0;i<arr.length;i++){
+            if(func){
+                arr.shift()
             }
         }
         
+        return arr;
+    },
+    chunk(arr,n){
+        // If n is undefined, set it equal to 1.
+        n ? n=n : n=1;
+        const newArr = [];
+
+        // Number of individual arrays that will be inside newArr
+        const rounds = Math.ceil(arr.length/n);
+
+
+        const size = n; // Remember size for the loops
+        let rep = 0; // Record number of reps of loops done
+        let divArr = []; // Individual arrays to be pushed
+
+        
+        // Loop to create new arrays pushed to newArray
+        const oddSize = (arr.length % 2)===1 ? true : false;
+        if(oddSize){
+            for(i=0;i<rounds-1;i++){
+                for(j=rep;j<n;j++){
+                    divArr.push(arr[j]);
+                    rep++;
+                }
+                n=size;
+                n+=rep;
+                newArr.push(divArr);
+                divArr = [];
+            }
+            // Push last item as an array
+            let lastArr = [];
+            lastArr.push(arr[arr.length-1]);
+            newArr.push(lastArr);
+        }else{
+            for(i=0;i<rounds;i++){
+                for(j=rep;j<n;j++){
+                    divArr.push(arr[j]);
+                    rep++;
+                }
+                n=size;
+                n+=rep;
+                newArr.push(divArr);
+                divArr = [];
+            }
+        }
+
         return newArr;
-    }    
+    }
+
 }
-
-//const r = [1,2,3,4,5]
-//console.log(drop(r))
-
-// const o = {a:1,b:2,c:3,d:4}
-// console.log(findKeys(r, (key => key===2)))
-
-/*const ro = [
-    { 'user': 'barney',  'active': false },
-    { 'user': 'fred',    'active': false },
-    { 'user': 'pebbles', 'active': true }
-];
-
-console.log(dropWhile(ro, o => !o.active))*/
-
 
 // Do not write or modify code below this line.
 module.exports = _;
