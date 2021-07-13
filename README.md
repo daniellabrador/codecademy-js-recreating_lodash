@@ -34,7 +34,7 @@ To check my program, Codecademy has written several JavaScript files inside the 
 
 To check all methods at the same time, run test/test-all.js and check the console's output. I ran the same file and the console provided this information:  \
 &nbsp;
-![alt text](test/result.png "Pop up message containing a random quote and current day and date")
+![alt text](test/result.png "All challenges passed as indicated by node.js output after running /test/test-all.js ")
 
 ## Sources
 
